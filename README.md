@@ -33,6 +33,7 @@ Erlang: 493.407ms, CUDA: 85.507ms<br>
 ok<br>
 <br>
 3. Test on Elixir 1.8.1<br>
+~/pteracuda/ebin$ iex<br>
 iex(1)> Application.start(:pteracuda,:temporary)<br>
 iex(2)> :pteracuda_demo.start(1000000)<br>
 Generating test data: 1000000<br>
