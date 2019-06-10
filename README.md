@@ -4,12 +4,13 @@ Forked from Kevin Smith on 6/9/2019
 
 fixed some issues in pcuda_ops.cu
 
-Testing done on Ubuntu 18.04 GTX 1070 i7-3930k 16GB 256SSD
-Erlang/OTP 22
-Cuda 10.1
+Testing done on an Ubuntu 18.04 machine: <br>
+With a Hexacore i7-3930k, GTX 1070, 16GB DDR3 and a 256SSD Harddrive.<br>
+Erlang/OTP 22<br>
+Cuda 10.1<br>
 
-Installing:
-
+Installing:<br>
+<br>
 1. update the rebar.config to your specific GPU architecture and compilation tool kit folders
 2. rebar compile, erl make and start application<br>
 ~/pteracuda/$ rebar compile<br>
