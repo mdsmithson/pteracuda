@@ -35,9 +35,14 @@ ok<br>
 <br>
 B. Test on Elixir 1.8.1<br><br>
 ~/pteracuda/ebin$ iex<br>
-iex(1)> Application.start(:pteracuda,:temporary)<br>
-iex(2)> :pteracuda_demo.start(1000000)<br>
-Generating test data: 1000000<br>
-Measuring performance ..<br>
-Erlang: 492.822ms, CUDA: 84.252ms<br>
-:ok
+```elixir
+Application.start(:pteracuda,:temporary)<br>
+:pteracuda_demo.start(1000000)
+{:ok, c} = :pteracuda_context.new()
+{:ok, b} = :pteracuda_buffer.new(:integer)
+ cudasort = fn (c,b,d) -> :pteracuda_buffer.write(b,d);:pteracuda_buffer.sort(c,b);:pteracuda_buffer.read(b) end
+ cudasort.(c,b,list)
+ # Benchmark
+ fn -> cudasort.(c,b,list) end |> :timer.tc |> elem(0) |> Kernel./(1000)
+```
+
