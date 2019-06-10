@@ -21,6 +21,7 @@ Installing:<br>
 
 Application:<br>
 
+A. Test on Erlang/OTP 22<br> 
 ~/pteracuda/ebin$ erl<br>
 Erlang/OTP 22 [erts-10.4.1] [source] [64-bit] [smp:12:12] [ds:12:12:10] [async-threads:1]<br>
 Eshell V10.4.1  (abort with ^G)<br>
@@ -32,7 +33,7 @@ Measuring performance ..<br>
 Erlang: 493.407ms, CUDA: 85.507ms<br>
 ok<br>
 <br>
-3. Test on Elixir 1.8.1<br>
+B. Test on Elixir 1.8.1<br>
 ~/pteracuda/ebin$ iex<br>
 iex(1)> Application.start(:pteracuda,:temporary)<br>
 iex(2)> :pteracuda_demo.start(1000000)<br>
