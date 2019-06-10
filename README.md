@@ -26,4 +26,12 @@ ok<br>
 Generating test data: 1000000<br>
 Measuring performance ..<br>
 Erlang: 493.407ms, CUDA: 85.507ms<br>
-ok
+ok<br>
+<br>
+3. Test on Elixir 1.8.1<br>
+iex(1)> Application.start(:pteracuda,:temporary)<br>
+iex(2)> :pteracuda_demo.start(1000000)<br>
+Generating test data: 1000000
+Measuring performance ..
+Erlang: 492.822ms, CUDA: 84.252ms
+:ok
