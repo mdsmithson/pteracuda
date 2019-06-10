@@ -44,9 +44,11 @@ list = for _ <- 0..10000000, do: :random.uniform(10000000)
  cudasort = fn x -> 
   {:ok, c} = :pteracuda_context.new()
   {:ok, b} = :pteracuda_buffer.new(:integer)
-  :pteracuda_buffer.write(b,x);:pteracuda_buffer.sort(c,b);:pteracuda_buffer.read(b) 
+  :pteracuda_buffer.write(b,x)
+  :pteracuda_buffer.sort(c,b)
+  :pteracuda_buffer.read(b)|>elem(1) 
  end
- cudasort.(c,b,list)
+ list |> cudasort.() 
  # Benchmark
  fn -> cudasort.(c,b,list) end |> :timer.tc |> elem(0) |> Kernel./(1000)
  # 883.162
