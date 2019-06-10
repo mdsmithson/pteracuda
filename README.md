@@ -21,3 +21,8 @@ Erlang/OTP 22 [erts-10.4.1] [source] [64-bit] [smp:12:12] [ds:12:12:10] [async-t
 Eshell V10.4.1  (abort with ^G)<br>
 1> application:start(pteracuda).<br>
 ok<br>
+2> pteracuda_demo:start(1000000).<br>
+Generating test data: 1000000<br>
+Measuring performance ..<br>
+Erlang: 493.407ms, CUDA: 85.507ms<br>
+ok
