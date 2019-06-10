@@ -36,13 +36,21 @@ ok<br>
 B. Test on Elixir 1.8.1<br><br>
 ~/pteracuda/ebin$ iex<br>
 ```elixir
-Application.start(:pteracuda,:temporary)<br>
-:pteracuda_demo.start(1000000)
-{:ok, c} = :pteracuda_context.new()
-{:ok, b} = :pteracuda_buffer.new(:integer)
- cudasort = fn (c,b,d) -> :pteracuda_buffer.write(b,d);:pteracuda_buffer.sort(c,b);:pteracuda_buffer.read(b) end
+Application.start(:pteracuda,:temporary)
+# :pteracuda_demo.start(1000000)
+
+list = for _ <- 0..10000000, do: :random.uniform(10000000)
+ cudasort = fn x -> 
+  {:ok, c} = :pteracuda_context.new()
+  {:ok, b} = :pteracuda_buffer.new(:integer)
+  :pteracuda_buffer.write(b,x);:pteracuda_buffer.sort(c,b);:pteracuda_buffer.read(b) 
+ end
  cudasort.(c,b,list)
  # Benchmark
  fn -> cudasort.(c,b,list) end |> :timer.tc |> elem(0) |> Kernel./(1000)
+ # 883.162
+ fn -> list |> Enum.sort end |> :timer.tc |> elem(0) |> Kernel./(1000)
+ # 4845.561
+
 ```
 
