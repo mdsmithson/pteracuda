@@ -9,6 +9,7 @@ With a Hexacore i7-3930k, GTX 1070, 16GB DDR3 and a 256SSD Harddrive.<br>
 Erlang/OTP 22<br>
 Cuda 10.1<br>
 
+
 Installing:<br>
 <br>
 1. update the rebar.config to your specific GPU architecture and compilation tool kit folders
@@ -17,6 +18,9 @@ Installing:<br>
 ~/pteracuda/$ cd src<br>
 ~/pteracuda/src$ erl -make<br>
 ~/pteracuda/src$ cd .. && cd ebin<br>
+
+Application:<br>
+
 ~/pteracuda/ebin$ erl<br>
 Erlang/OTP 22 [erts-10.4.1] [source] [64-bit] [smp:12:12] [ds:12:12:10] [async-threads:1]<br>
 Eshell V10.4.1  (abort with ^G)<br>
