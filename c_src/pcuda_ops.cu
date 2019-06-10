@@ -1,5 +1,6 @@
 #include <vector>
 #include <stdio.h>
+#include <string.h>
 
 #include "cuda.h"
 
@@ -11,6 +12,9 @@
 #include <thrust/binary_search.h>
 #include <thrust/set_operations.h>
 #include <thrust/extrema.h>
+#include <thrust/device_malloc.h>
+#include <thrust/device_free.h>
+#include <thrust/device_ptr.h>
 
 #include "pcuda_string.h"
 
@@ -21,7 +25,7 @@ PCudaString::PCudaString() {
 
 PCudaString::PCudaString(const std::string& other) {
     this->len = other.length();
-    this->ptr = thrust::device_malloc(this->len + 1);
+    thrust::device_ptr<void> this->ptr = thrust::device_malloc(this->len + 1);
     this->str = raw_pointer_cast(this->ptr);
     cudaMemcpy(this->str, other.c_str(), this->len, cudaMemcpyHostToDevice);
 }
