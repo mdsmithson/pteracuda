@@ -41,21 +41,21 @@ Application.start(:pteracuda,:temporary)
 # :pteracuda_demo.start(1000000)
 
 list = for _ <- 0..10000000, do: :random.uniform(10000000)
- cudasort = fn x -> 
+cudasort = fn x -> 
   {:ok, c} = :pteracuda_context.new()
   {:ok, b} = :pteracuda_buffer.new(:integer)
   :pteracuda_buffer.write(b,x)
   :pteracuda_buffer.sort(c,b)
   :pteracuda_buffer.read(b)|>elem(1) 
- end
- list |> cudasort.()
+end
+list |> cudasort.()
  # [1, 3, 5, 5, 5, 8, 9, 10, 11, 13, 14, 17, 17, 18, 20, 20, 21, 21, 22, 23, 24,
  # 25, 26, 27, 28, 28, 29, 30, 31, 31, 31, 34, 35, 36, 36, 36, 36, 38, 38, 38, 39,
  # 39, 39, 39, 39, 40, 40, 41, 42, 42, ...]
- # Benchmark
- fn -> list |> cudasort.() end |> :timer.tc |> elem(0) |> Kernel./(1000000)
+# Benchmark
+fn -> list |> cudasort.() end |> :timer.tc |> elem(0) |> Kernel./(1000000)
  # 0.415875 Second
- fn -> list |> Enum.sort end |> :timer.tc |> elem(0) |> Kernel./(1000000)
+fn -> list |> Enum.sort end |> :timer.tc |> elem(0) |> Kernel./(1000000)
  # 4.536995 Seconds
  
 
